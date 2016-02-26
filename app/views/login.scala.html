@@ -1,0 +1,46 @@
+@(form: Form[Option[User]], rememberme: Form[Boolean])(implicit flash: Flash, context: WebContext, messages: Messages)
+@main(title = Messages("login")) {
+
+    @helper.form(routes.LoginController.authenticate) {
+
+        @form.globalError.map { error =>
+            <div class="alert alert-danger" role="alert">
+                @error.message
+            </div>
+        }
+        @flash.get("success").map { message =>
+            <div class="alert alert-success" role="alert">
+                @message
+            </div>
+        }
+
+        <div class="row">
+            <div class="col-sm-12 frame-box">
+                <h1>@Messages("login")</h1>
+                <div class="form-group">
+                    <label for="email">Email address</label>
+                    <input type="email" class="form-control" name="email" placeholder="@Messages("email")" id="email" value="@form("email").value">
+                </div>
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" class="form-control" name="password" id="password" placeholder="@Messages("password")">
+                </div>
+                <div class="checkbox">
+                    <label for="rememberme">
+                        <input type="checkbox" name="rememberme" id="rememberme" value="true" @if(rememberme.get) {
+                            checked="checked" } />
+                        @Messages("remember.me")
+                    </label>
+                </div>
+                <button type="submit" class="btn btn-default" id="loginbutton">@Messages("login")</button>
+            </div>
+        </div>
+    }
+
+    <div class="row">
+        <div class="col-sm-12 frame-box">
+            @Messages("dont.have.an.account")
+            <a href="@controllers.register.routes.RegisterController.register()">@Messages("register.now")</a>.
+        </div>
+    </div>
+}

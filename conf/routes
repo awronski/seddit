@@ -1,0 +1,33 @@
+GET         /                              controllers.posts.PostsController.index()
+GET         /posts/:page                   controllers.posts.PostsController.page(page: Int)
+GET         /posts/nick/:nick/:page        controllers.posts.PostsController.pageByNick(nick: String, page: Int)
+GET         /posts/tag/:tag/:page          controllers.posts.PostsController.pageByTag(tag: String, page: Int)
+
+GET         /register                      controllers.register.RegisterController.register
+GET         /register/create               controllers.register.RegisterController.register
+POST        /register/create               controllers.register.RegisterController.createUser
+
+GET         /post/add                      controllers.posts.CreatePostController.addPost
+GET         /post/save                     controllers.posts.CreatePostController.addPost
+POST        /post/save                     controllers.posts.CreatePostController.savePost
+GET         /post/:id/:title               controllers.posts.PostController.index(id: Long, title: String)
+POST        /post/vote                     controllers.votes.VotesController.vote
+
+POST        /comments/save                 controllers.comments.CommentsController.saveComment
+
+POST        /pictures/upload               controllers.pictures.PicturesController.upload
+
+GET         /login                         controllers.LoginController.login
+POST        /auth                          controllers.LoginController.authenticate
+GET         /logout                        controllers.LoginController.logout
+
+GET         /time                          controllers.TimeController.index
+GET         /not-found                     controllers.PageNotFoundController.index
+
+GET         /jsRoutes                      controllers.JsResourceController.javascriptRoutes
+GET         /i18n                          controllers.I18NResourceController.messages
+GET         /assets/*file                  controllers.Assets.versioned(path="/public", file: Asset)
+
+GET         /rss.xml                       controllers.xml.RssController.rss
+GET         /sitemap.xml                   controllers.xml.SitemapController.sitemap
+GET         /robots.txt                    controllers.Assets.at(path="/public", file="robots.txt")

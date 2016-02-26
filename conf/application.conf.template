@@ -1,0 +1,65 @@
+s3.bucket = ""
+s3.key = ""
+s3.secret = ""
+s3.folder = "test"
+
+site.name = "Xyz.com"
+site.url = "http://xyz.com"
+
+google.tagmanagerId = "GTM-XXX"
+
+pictures.temp.directory = "c:/trash/pictures/"
+
+recaptcha {
+  privateKey = "X"
+  publicKey = "X"
+  apiVersion = 2
+}
+
+# See http://www.playframework.com/documentation/latest/ApplicationSecret for more details.
+play {
+  crypto.secret = "changeme"
+  i18n.langs = [ "pl","en" ]
+  evolutions.enabled = true
+  evolutions.autoApply = true
+  evolutions.autoApplyDowns = false
+  modules.enabled += "modules.ActorModule"
+  cache.bindCaches = ["picturesCache", "votesCache"]
+}
+
+application.global=controllers.Global
+
+slick.dbs.default {
+  driver = "dao.ExtPostgresDriver$"
+  db {
+    driver = org.postgresql.Driver
+    url = "jdbc:postgresql://localhost/alidb"
+    user = "ali"
+    password = "haslo"
+    //    numThreads
+    //    queueSize
+    connectionTimeout = 5000
+    validationTimeout = 5000
+  }
+}
+
+
+ali {
+
+  dispatcher {
+    fork-join-executor {
+      parallelism-min = 4
+      parallelism-factor = 2
+      parallelism-max = 40
+    }
+  }
+
+  posts {
+    per-page = 5
+  }
+
+  pictures {
+    maxSize = 10
+  }
+
+}

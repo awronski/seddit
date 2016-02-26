@@ -1,0 +1,17 @@
+@(cd: CommentDetails, css: String)(implicit context: WebContext, messages: Messages)
+
+<div class="col-sm-12 comment @css">
+    <div>
+        @if(cd.isUser) {
+            <a href="@controllers.posts.routes.PostsController.pageByNick(cd.author, 0)">
+            @cd.author
+            </a>
+        } else {
+            ~ @cd.author
+        }
+        / @cd.comment.created.format("yyyy-MM-dd HH:mm")
+    </div>
+    <div>
+        @Html(HtmlFormat.escape(cd.comment.body).toString.replace("\n", "<br/>"))
+    </div>
+</div>

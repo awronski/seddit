@@ -1,0 +1,411 @@
+$first: #FFCDD2
+$second: #EF9A9A
+$third: #E57373
+$fourth: #EF5350
+$fifth: #F44336
+
+$navBarText: #ffe2dd
+
+$links: #732921
+$error: #ff0000
+
+$footerBg: #fff
+
+// ---------------------------------------------------------------------------
+//body
+
+@import url("https://fonts.googleapis.com/css?family=Ubuntu:400,700")
+
+body
+  padding-top: 60px
+  font-family: "Ubuntu", Tahoma, "Helvetica Neue", Helvetica, Arial, sans-serif
+a
+  color: $links
+  border-bottom: 1px solid transparent
+  transition: all ease-in-out 0.2s
+
+a:hover
+  color: $fifth
+
+
+header
+  margin-top: 15px
+
+h3 a 
+  font-size: 0.7em
+
+.space 
+  margin-bottom: 15px
+
+.maxheight
+  max-height: 150px
+
+.footer
+  color: $footerBg
+
+
+
+// ---------------------------------------------------------------------------
+// register
+div.has-error span
+  color: $error
+
+dl#captcha_field.error dd.error
+  color: $error
+
+
+
+// ---------------------------------------------------------------------------
+// frames for posts, registrer,login
+
+.frame-box
+  padding: 15px
+  margin-bottom: 15px
+  border: 1px solid rgb(200, 200, 200)
+  box-shadow: rgba(0, 0, 0, 0.1) 0 5px 5px 2px
+  background: rgba(200, 200, 200, 0.1)
+
+.fb-box
+  text-align: center
+
+
+// ---------------------------------------------------------------------------
+// button colors
+
+.btn-info
+  border-color: $second
+  background-color: $third
+
+.btn-info:hover
+  border-color: $first
+  background-color: $second
+
+// ---------------------------------------------------------------------------
+// navbar text validation for mobile problems
+.navbar-text
+  margin-left: 15px
+
+.navbar-default
+  background-color: $third
+
+.navbar-default .navbar-nav > li > a
+  color: $navBarText
+
+//.navbar-default .navbar-nav>.active>a
+//  color: $fifth
+//  background-color: #bf3e11
+
+.navbar-default .navbar-text
+  color: $navBarText
+
+.navbar-default .navbar-brand
+  color: $navBarText
+
+// ---------------------------------------------------------------------------
+// animeted image
+
+.offer :hover
+  -webkit-transform: scale(1.1)
+  -moz-transform: scale(1.1)
+  -ms-transform: scale(1.1)
+  -o-transform: scale(1.1)
+  -webkit-transition: all 0.4s ease-in-out
+  -moz-transition: all 0.4s ease-in-out
+  -o-transition: all 0.4s ease-in-out
+  transition: all 0.4s ease-in-out
+
+// ---------------------------------------------------------------------------
+// pagination colors
+
+.pagination > li > a,
+.pagination > li > a:hover
+  color: $links
+
+.pagination > .active > a,
+.pagination > .active > a:hover
+  color: $links
+  background-color: $first
+  border-color: #dddddd
+  cursor: default
+
+div.col-sm-3
+  padding: 0
+
+//footer
+footer
+  bottom: 0
+  width: 100%
+  height: 60px
+  background-color: #333333
+
+// ---------------------------------------------------------------------------
+// add post
+
+form#addpostForm
+  clear: both
+
+form#addpostForm div.form-group
+  margin-top: 18px
+
+.post-example
+  font-size: 0.8em
+  color: #777
+
+#addpostForm span.error-msg
+  font-weight: normal
+  color: $error
+
+div.rating-container.has-error
+  border: 1px solid $error
+
+#addpostForm #defaultImg img
+  width: 20%
+  height: 20%
+
+
+
+// ---------------------------------------------------------------------------
+// dropzone
+
+#dropzone
+  border: 2px dashed $third
+  border-radius: 5px
+  background: white
+  height: 220px
+  box-sizing: border-box
+
+#dropzone.has-error
+  border: 3px dashed $error
+
+#dropzone .dz-ppost
+  float: left
+  margin-right: 20px
+  border: 1px dotted #777
+  border-radius: 5px
+
+#dropzone .dz-error div.dz-success-mark
+  display: none
+
+#dropzone .dz-success div.dz-error-mark
+  display: none
+
+#dropzone .dz-success-mark
+  color: green
+  font-size: 14px
+
+#dropzone .dz-error-mark
+  color: $error
+  font-size: 14px
+
+.margin-footer
+  margin-bottom: 99px
+
+// ---------------------------------------------------------------------------
+// posts
+
+.add-post-call
+  margin-bottom: 10px
+  a
+    margin-right: 10px
+
+.voting
+  text-align: center
+  font-size: 2em
+  font-weight: bold
+  margin: auto 0
+
+.post-box
+  @extend .frame-box
+
+.post-box h3
+  margin: 0
+
+.post-box h6
+  margin-top: 5px
+
+.post-box .post-desc
+  padding-top: 6px
+  padding-bottom: 6px
+  word-wrap: break-word
+
+.rate-labels
+  font-size: 1.2em
+  margin: 5px 2px 5px 0px
+
+// label size bigger
+
+.post-size
+  font-size: 95%
+  padding: 3.3px 7.58px
+
+// ---------------------------------------------------------------------------
+// post
+
+.full-post h1
+  margin: 0
+  font-size: 26px
+
+.full-post .post-body
+  margin-top: 1em
+  font-size: 1.2em
+
+.full-post .post-created
+  margin-top: 0.5em
+
+.post-title-box
+  @extend .frame-box
+
+.post-body-box
+  @extend .frame-box
+  word-wrap: break-word
+
+.post-picture-thumb
+  padding-bottom: 8px
+
+.comments-box
+  @extend .frame-box
+
+.comment
+  margin-bottom: 20px
+  border-bottom: 1px dotted gray
+
+.parent-comment
+
+.child-comment
+  margin-left: 20px
+
+
+
+// ---------------------------------------------------------------------------
+// FAQ
+.gi-2x
+  font-size: 2em
+
+.gi-3x
+  font-size: 3em
+  color: #EF5350
+
+.gi-4x
+  font-size: 4em
+
+.gi-5x
+  font-size: 5em
+
+.padding-left-right 
+  padding-left: 25px
+  padding-right: 25px
+
+.padding-top-bottom 
+  margin-top: 25px
+  margin-bottom: 25px
+
+// ---------------------------------------------------------------------------
+
+// Paul content
+
+// magic pencil
+
+@keyframes hvr-icon-wobble-horizontal
+  16.65%
+    -webkit-transform: translateX(6px)
+    transform: translateX(2px)
+
+
+  33.3%
+    -webkit-transform: translateX(-5px)
+    transform: translateX(4px) translateY(-5px)
+
+
+  49.95%
+    -webkit-transform: translateX(4px) rotate(20deg)
+    transform: translateX(6px) rotate(20deg)
+
+
+  66.6%
+    -webkit-transform: translateX(-2px)
+    transform: translateX(8px)
+
+
+  83.25%
+    -webkit-transform: translateX(1px)
+    transform: translateX(10px) translateY(-5px)
+
+
+  100%
+    -webkit-transform: translateX(2px)
+    transform: translateX(2px)
+
+.hvr-icon-wobble-horizontal 
+  display: inline-block
+  vertical-align: middle
+  -webkit-transform: translateZ(0)
+  transform: translateZ(0)
+  box-shadow: 0 0 1px rgba(0, 0, 0, 0)
+  -webkit-backface-visibility: hidden
+  backface-visibility: hidden
+  -moz-osx-font-smoothing: grayscale
+  position: relative
+  padding-right: 2.2em
+  -webkit-transition-duration: 0.3s
+  transition-duration: 0.3s
+
+.hvr-icon-wobble-horizontal:before 
+  content: "\270f"
+  position: absolute
+  right: 1em
+  padding: 0 0
+  font-family: "Glyphicons Halflings"
+  -webkit-transform: translateZ(0)
+  transform: translateZ(0)
+
+.hvr-icon-wobble-horizontal:hover:before, .hvr-icon-wobble-horizontal:focus:before, .hvr-icon-wobble-horizontal:active:before 
+  -webkit-animation-name: hvr-icon-wobble-horizontal
+  animation-name: hvr-icon-wobble-horizontal
+  -webkit-animation-duration: 1s
+  animation-duration: 1s
+  -webkit-animation-timing-function: ease-in-out
+  animation-timing-function: ease-in-out
+  -webkit-animation-iteration-count: 1
+  animation-iteration-count: 1
+
+
+
+.hvr-wobble-horizontal:before
+  content: "\270f"
+  position: absolute
+  right: 1em
+  padding: 0 1px
+  font-family: "Glyphicons Halflings"
+  -webkit-transform: translateZ(0)
+  transform: translateZ(0)
+
+// blog aricles
+.blog-link
+  padding: 5px 0
+
+/* Extra small devices (phones, less than 768px) */
+/* No media query since this is the default in Bootstrap */
+
+/* Small devices (tablets, 768px and up) */
+@media (min-width: 768px)
+  div.col-sm-3
+    padding: 0 0 0 15px
+
+  header
+    margin-top: 0
+  h3 a
+    font-size: 0.9em
+
+  .space
+    margin-bottom: 15px
+  .half-space
+    margin-bottom: 7px
+
+/* Medium devices (desktops, 992px and up) */
+@media (min-width: 992px)
+
+/* Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px)
+
+
+

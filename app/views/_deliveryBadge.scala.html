@@ -1,0 +1,10 @@
+@(delivery: Int)(implicit context: WebContext, messages: Messages)
+
+@defining(
+    if (delivery < 14) "success"
+    else if (delivery < 21) "info"
+    else if (delivery < 30) "warning"
+    else "danger") { label =>
+
+    <span class="label label-@label">@Messages("post.delivery") @delivery @Messages("post.days")</span>
+}

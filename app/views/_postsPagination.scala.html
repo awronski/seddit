@@ -1,0 +1,36 @@
+@import controllers.posts.PostsParams
+@(params: PostsParams)
+    @lowbound() = @{
+        if (params.page - 3 > 0)
+            params.page - 3
+        else
+            0
+    }
+    @highbound() = @{
+        if (params.page + 3 > params.pages)
+            params.pages
+        else
+            params.page + 3
+    }
+
+<nav>
+    <ul class="pagination">
+        @if(params.page > 0) {
+            <li>
+                <a href="@params.urlChange(-1)" aria-label="Previous">
+                    <span aria-hidden="true">&laquo;</span>
+                </a>
+            </li>
+        }
+        @for(p <- lowbound() until highbound()) {
+            <li @if(p == params.page) { class="active" }><a href="@params.url(p)">@(p + 1)</a></li>
+        }
+        @if(params.page < (highbound() - 1)) {
+            <li>
+                <a href="@params.urlChange(+1)" aria-label="Next">
+                    <span aria-hidden="true">&raquo;</span>
+                </a>
+            </li>
+        }
+    </ul>
+</nav>

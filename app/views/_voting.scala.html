@@ -1,0 +1,11 @@
+@(r: Post)(implicit context: WebContext, messages: Messages)
+
+<div class="voting">
+    <div>
+        <a id="voteUp@r.id" class="vote vote-up" href="#@r.id"><span class="glyphicon glyphicon-chevron-up"></span></a>
+    </div>
+    <div id="votes@r.id">@r.votes</div>
+    <div>
+        <a id="voteDown@r.id" class="vote vote-down" href="#@r.id"><span class="glyphicon glyphicon-chevron-down"></span></a>
+    </div>
+</div>

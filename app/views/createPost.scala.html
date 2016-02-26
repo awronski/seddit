@@ -1,0 +1,70 @@
+@import services.Conf
+@()(implicit context: WebContext, messages: Messages)
+
+@head = {
+
+    <script>
+            var maxFileUploadSize = @Conf.maxPictureSize;
+    </script>
+    <script src="@routes.I18NResourceController.messages"></script>
+    <script src="@routes.Assets.versioned("javascript/create-post.js")"></script>
+    <script src="@routes.Assets.versioned("javascript/dropzone.js")"></script>
+
+    <script src="@routes.Assets.versioned("tagsinput/bootstrap-tagsinput.min.js")"></script>
+    <link media="all" rel="stylesheet" type="text/css" href="@routes.Assets.versioned("tagsinput/bootstrap-tagsinput.css")" />
+
+    <script>
+            $(function () {
+                $('#tags').tagsinput({
+                    maxTags: 8,
+                    trimValue: true,
+                    maxChars: 20
+                });
+            });
+    </script>
+}
+
+@main(title = Messages("add.post"), head) {
+    <div class="row">
+        <div class="col-sm-12 frame-box">
+            <h1>@Messages("add.post")</h1>
+
+            <form action="@controllers.pictures.routes.PicturesController.upload" class="form-control dropzone" id="dropzone">
+                <div class="fallback">
+                    <input name="pic" type="file" multiple />
+                </div>
+            </form>
+
+            <form action="@controllers.posts.routes.CreatePostController.savePost()" id="addPostForm">
+
+                <div class="form-group">
+                    <label for="link">@Messages("link") <span class="error-msg"></span></label>
+                    <input type="text" name="link" class="form-control" id="link" placeholder="@Messages("link")">
+                </div>
+
+                <div class="form-group">
+                    <label for="nick">@Messages("title") <span class="error-msg"></span></label>
+                    <input type="text" name="title" class="form-control" id="title" placeholder="@Messages("title")">
+                </div>
+
+                <div class="form-group">
+                    <label for="nick">@Messages("body") <span class="error-msg"></span></label>
+                    <textarea name="body" class="form-control" rows="8" id="body" placeholder="@Messages("body")"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="tags">@Messages("tags") <span class="error-msg"></span>
+                    </label><br/>
+                    <input type="text" name="tags" class="form-control" id="tags" data-role="tagsinput" placeholder="@Messages("tags")"/>
+                </div>
+
+                <div class="form-group margin-footer">
+                    <a id="submitter" class="btn btn-info btn-lg">
+                    @Messages("save.post")
+                    </a>
+                    <img id="spinner" class="hide" src="@routes.Assets.versioned("images/spinner.gif")"/>
+                </div>
+            </form>
+        </div>
+    </div>
+}

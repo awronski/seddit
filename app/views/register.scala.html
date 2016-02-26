@@ -1,0 +1,53 @@
+@import views.html.helper.inputRadioGroup
+@(form: Form[controllers.register.AspiringUser])(implicit context: WebContext, messages: Messages)
+@main(title = Messages("register")) {
+
+
+
+    @helper.form(controllers.register.routes.RegisterController.createUser) {
+        <div class="row">
+        <div class="col-sm-12 frame-box">
+        <h1>@Messages("register")</h1>
+            <div class="form-group @if(form.errors("nick").nonEmpty) {has-error}">
+                <label for="nick">@Messages("nick")</label>
+                <input type="text" name="nick" class="form-control" id="nick" placeholder="Nick" value="@form("nick").value">
+                <span>@form.errors("nick").take(1).map(e => Messages(e.message))</span>
+            </div>
+
+            <div class="form-group @if(form.errors("sex").nonEmpty) {has-error}">
+                <label for="sex">@Messages("sex")</label>
+                <label class="radio-inline"><input type="radio" name="sex" value="m" @if(form("sex").value.contains("m")) { checked }>@Messages("male")</label>
+                <label class="radio-inline"><input type="radio" name="sex" value="f" @if(form("sex").value.contains("f")) { checked }>@Messages("female")</label><br/>
+                <span>@form.errors("sex").take(1).map(e => Messages(e.message))</span>
+            </div>
+
+            <div class="form-group @if(form.errors("email").nonEmpty) {has-error}">
+                <label for="email">@Messages("email")</label>
+                <input type="text" name="email" class="form-control" id="email" placeholder="Email" value="@form("email").value">
+                <span>@form.errors("email").take(1).map(e => Messages(e.message))</span>
+            </div>
+            <div class="form-group @if(form.errors("password.password1").nonEmpty || form.errors("password").nonEmpty) {has-error}">
+                <label for="password.password1">@Messages("password")</label>
+                <input type="password" name="password.password1" class="form-control" id="password.password1" placeholder="@Messages("password")" value="@form("password.password1").value">
+                <span>
+                    @form.errors("password.password1").take(1).map(e => Messages(e.message))
+                    @form.errors("password").take(1).map(e => Messages(e.message))
+                </span>
+            </div>
+            <div class="form-group @if(form.errors("password.password2").nonEmpty || form.errors("password").nonEmpty) {has-error}">
+                <label for="password.password2">@Messages("repeat.password")</label>
+                <input type="password" name="password.password2" class="form-control" id="password.password2" placeholder="@Messages("repeat.password")" value="@form("password.password2").value">
+                <span>
+                    @form.errors("password.password2").take(1).map(e => Messages(e.message))
+                    @form.errors("password").take(1).map(e => Messages(e.message))
+                </span>
+            </div>
+            <div class="form-group">
+                @recaptcha.recaptchaField(form = form, isRequired = false, fieldName = "captcha")
+            </div>
+            <button type="submit" class="btn btn-default">@Messages("register")</button>
+        </div>  <!-- /col-md frame box -->
+        </div> <!-- /row -->
+    }
+
+}

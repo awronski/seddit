@@ -1,0 +1,137 @@
+@import models.PostDetails
+@import controllers.utils.UrlNormalizer
+@import controllers.utils.PostUrl
+@import controllers.utils.StringCut
+@import services.Conf
+
+@(rd: PostDetails, cds: Map[Option[Long], Seq[CommentDetails]])(implicit context: WebContext, messages: Messages)
+
+@head = {
+
+    <meta name="keywords" lang="@messages.lang.language" content="@(rd.post.tags.mkString(","))"/>
+    <meta name="description" lang="@messages.lang.language" content="@(StringCut(rd.post.body, 120).replaceAll("[\t\n\r]+", " "))"/>
+
+    <link media="all" rel="stylesheet" type="text/css" href="@routes.Assets.versioned("lightbox/ekko-lightbox.css")" />
+    <script src="@routes.Assets.versioned("lightbox/ekko-lightbox.js")"></script>
+    <script src="@routes.I18NResourceController.messages"></script>
+    <script src="@routes.Assets.versioned("javascript/create-comment.js")"></script>
+
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="@rd.post.title" />
+    <meta property="og:url" content="@PostUrl(rd.post.id, rd.post.title)" />
+    <meta property="og:image" content="http://d9go8ai1drhfe.cloudfront.net/ali/@{
+        Conf.s3Folder
+    }/pictures/@rd.post.id/0.jpg" />
+    <meta property="og:description" content="@(StringCut(rd.post.body, 120).replaceAll("[\t\n\r]+", " "))"/>
+    <meta property="og:locale" content="pl_PL" />
+    <meta property="og:site_name" content="@Conf.siteName" />
+
+    <script>
+            $(document).delegate('*[data-toggle="lightbox"]', 'click', function(event) {
+                event.preventDefault();
+                $(this).ekkoLightbox();
+            });
+    </script>
+}
+
+@main(title = rd.post.title, head) {
+
+    <div class="row">
+        <div class="col-sm-9">
+            <div class="row full-post">
+
+                <div class="col-sm-12 post-title-box">
+
+                    <div class="row">
+                        @*<div class="col-sm-2 col-xs-3">*@
+                        @*@_voting(rd.post)*@
+                        @*</div>*@
+                        <div class="col-sm-12 col-xs-12">
+                            <header>
+                                <h3><a class="post-ali-link" target="_blank" href="@rd.post.link">
+                                    @rd.post.title
+                                </a></h3>
+                            </header>
+                            <div class="post-created">
+                                <a href="@controllers.posts.routes.PostsController.pageByNick(rd.user.nick, 0)">@rd.user.nick</a>
+                                /
+                                @rd.post.created.format("yyyy-MM-dd HH:mm")
+                                /
+                                @_tags(rd.post.tags)
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12 post-body-box">
+                    <div class="row">
+                    @Range(0, rd.post.pictures).map { i =>
+                        @if(i > 0 && i % 3 == 0) {
+                            </div>
+                            <div class="row">
+                        }
+                        <div class="col-sm-4 col-xs-6 post-picture-thumb">
+                            <a href="http://d9go8ai1drhfe.cloudfront.net/ali/@{Conf.s3Folder}/pictures/@{rd.post.id + "/" + i + ".jpg"}"
+                            data-toggle="lightbox" data-gallery="multiimages" class="pictureThumb">
+                                <img src="http://d9go8ai1drhfe.cloudfront.net/ali/@{Conf.s3Folder}/pictures/@{rd.post.id + "/" + i + ".jpg"}" alt="@rd.post.title - image@i" class="img-responsive img-thumbnail maxheight"/>
+                            </a>
+                        </div>
+                    }
+                    </div>
+
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <article>
+                                <h1>@rd.post.title</h1>
+                                <div class="post-body">@_postBody(rd.post.body)</div>
+                            </article>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-sm-3">
+
+            <div class="frame-box text-center">
+                <div class="fb-like" data-href="@PostUrl(rd.post.id, UrlNormalizer(rd.post.title))" data-layout="button" data-action="recommend" data-show-faces="false" data-share="true"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <div class="row comments-box col-sm-9">
+        <h3>@Messages("post.comments")</h3>
+
+        <div id="comments-list">
+        @if(cds.nonEmpty) {
+            @cds(None).map { parent =>
+                @_comment(parent, "parent-comment")
+                @cds.getOrElse(Some(parent.comment.id), Seq.empty[CommentDetails]).map { child =>
+                    @_comment(child, "child-comment")
+                }
+            }
+        }
+        </div>
+
+        <div>
+            <form class="addCommentForm" action="@controllers.comments.routes.CommentsController.saveComment()" method="post">
+                <input type="hidden" name="postId" value="@rd.post.id"/>
+                <div class="form-group">
+                    <label for="nick">@Messages("nick") <span class="error-msg"></span></label>
+                    <input type="text" name="nick" class="form-control" placeholder="@Messages("nick")" @if(context.user.isDefined) { value="@{context.user.get.nick}" disabled} />
+                </div>
+                <div class="form-group">
+                    <label for="nick">@Messages("post.comment") <span class="error-msg"></span></label>
+                    <textarea name="body" class="form-control" rows="4" placeholder="@Messages("post.comment")"></textarea>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-default">Submit</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+
+}

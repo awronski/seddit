@@ -1,0 +1,71 @@
+login=Login
+logout=Logout
+remember.me=Remeber me
+welcome.guest=Welcome!
+welcome.user=Welcome {0}!
+page.footer=© 2016 Seddit
+posts.add.post.call=Add post
+
+email=Email
+nick=Nick
+password=Password
+repeat.password=Repeat password
+register=Register
+sex=Gender
+male=Male
+female=Female
+dont.have.an.account=If you don''t have an account please
+register.now=register
+
+title=Title
+link=Link
+price=Cena USD
+body=Post
+tags=Tags
+rate=Rate
+delivery=Delivery
+add.post=Add post
+save.post=Save post
+cant.remember=Can''t remember
+dropzone.drop.files.here.to.upload=Drop files here or click to upload files from your computer
+tags.how.to.add=Press ENTER to add another a tag
+
+menu.home.page=Home page
+
+site.homepage.title=Seddit
+site.homepage.desc=Simple forum written in Scela.
+site.homepage.keywords=seddit, scala, forum
+
+post.see.and.buy=Check and Buy!
+post.add.comment=Add comment
+post.comments=Comments
+post.comment=Comment
+post.delivery=Delivery
+post.days=days
+
+error.invalid.email.or.password=Invalid email or password
+error.email=Invalid email
+error.required=This field is required
+error.nick.already.taken=This nick is already taken
+error.nick.illegal.characters=Allowed characters [a-z 0-9 . -]
+error.nick.max.length=Max length of nick is 64 characters
+error.account.with.that.email.already.exists=Account with that email already exists
+error.password.length=Password length should be between 6 and 64
+error.password.dont.match=Paswords don't match
+error.account.enter.your.gender=Enter your gender
+
+error.comment.illegal.nick=Allowed characters [a-z 0-9 . -]
+error.comment.body.is.required=Enter a comment
+
+error.addForm.title=Title must be between 8 and 160 characters.
+error.addForm.link=Enter correct link to aliexpress to working product page.
+error.addForm.body=Description must be minimum 16 characters long.
+error.addForm.add.at.least.one.picture.must.be.added=Add least one picture must be added.
+error.addForm.tags=Add at least one tag.
+
+errror.post.not.found=Post not found
+errror.page.not.found=Page not found
+
+error.captchaIncorrect=Incorrect, please try again
+error.recaptchaNotReachable=Unable to contact Recaptcha
+error.apiError=Invalid response from Recaptcha

@@ -1,0 +1,91 @@
+@import models.PostDetails
+@import controllers.utils.UrlNormalizer
+@import controllers.posts.PostsParams
+@import services.Conf
+
+@(posts: Seq[PostDetails], params: PostsParams)(implicit context: WebContext, messages: Messages)
+
+@head = {
+    <meta name="keywords" lang="@messages.lang.language" content="@Messages("site.homepage.desc")"/>
+    <meta name="description" lang="@messages.lang.language" content="@Messages("site.homepage.keywords")"/>
+}
+
+@main(title = Messages("site.homepage.title"), head) {
+    <div class="row add-post-call">
+        <a href="@controllers.posts.routes.CreatePostController.addPost()" role="button" class="btn btn-info btn-lg hvr-icon-wobble-horizontal">
+            @Messages("posts.add.post.call")
+        </a>
+    </div>
+
+
+    <div class="row">
+        <div class="col-sm-9">
+            @posts.map { r =>
+
+                <div class="row post-box">
+                    <section>
+
+                    <div class="col-sm-1 col-xs-3">
+                        @_voting(r.post)
+                    </div>
+
+                    <div class="col-sm-4 col-xs-12">
+                        <a href="@controllers.posts.routes.PostController.index(r.post.id, UrlNormalizer(r.post.title))">
+                            <div class="offer">
+                                <img class="img-responsive img-thumbnail" alt="@r.post.title - image0"
+                                src="http://d9go8ai1drhfe.cloudfront.net/ali/@{Conf.s3Folder}/pictures/@r.post.id/0.jpg"/>
+                            </div>
+                        </a>
+                    </div>
+
+                    <div class="col-sm-8 col-xs-12">
+                        <header>
+                            <h3><a href="@controllers.posts.routes.PostController.index(r.post.id, UrlNormalizer(r.post.title))">
+                                @r.post.title
+                            </a></h3>
+                        </header>
+                        <article>
+                        <div class="rate-labels">
+                            @if(r.post.pictures > 1) {
+                            <span class="label label-default">@(r.post.pictures) x <span class="glyphicon glyphicon-camera"></span></span>
+                            }
+                        </div>
+                        <div class="half-space">
+                            <a href="@controllers.posts.routes.PostsController.pageByNick(r.user.nick, 0)">@r.user.nick</a>
+                            /
+                            @r.post.created.format("yyyy-MM-dd HH:mm")
+                            /
+                            <a href="@controllers.posts.routes.PostController.index(r.post.id, UrlNormalizer(r.post.title))#comments-list">
+                                @Messages("post.comments") (@r.post.commentsNumber)
+                            </a>
+                        </div>
+                        <div class="space">
+                            @_tags(r.post.tags)
+                        </div>
+
+                        <div class="post-desc">
+                            @defining(r.post.body) { body =>
+                                @if(body.length > 160) {
+                                    @(body.substring(0, 160)) [...]
+                                } else {
+                                    @body
+                                }
+                            }
+                        </div>
+                        </article>
+                    </div>
+                    </section>
+                </div>
+            }
+            <div class="row text-center">
+                <div class="pagination-sm">
+                @_postsPagination(params)
+                </div>
+            </div>
+        </div>
+
+        <!-- RIGHT COLUMN -->
+        <div class="col-sm-3 margin-footer">
+        </div>        <!-- /md-3 right column -->
+    </div> <!-- /row total -->
+}

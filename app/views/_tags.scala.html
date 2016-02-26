@@ -1,0 +1,5 @@
+@(t: List[String])(implicit context: WebContext, messages: Messages)
+
+@t.map{tag =>
+    <a href="@controllers.posts.routes.PostsController.pageByTag(tag, 0)">#@tag</a>
+}

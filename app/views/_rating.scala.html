@@ -1,0 +1,12 @@
+@(rate: Int)(implicit context: WebContext, messages: Messages)
+
+@defining(rate match {
+    case 1 => "danger"
+    case 2 => "warning"
+    case 3 => "info"
+    case 4 => "primary"
+    case 5 => "success"
+    }) { label =>
+
+    <span class="label label-@label post-size">@Messages("addPost." + rate)</span>
+}
