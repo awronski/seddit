@@ -1,15 +1,15 @@
 # seddit
-Simple reddit clone written in Scala with: Play 2.4 + Slick 3.0 + Postgresql
+Simple reddit clone written in Scala with: Play 2.4 + Slick 3.0 + Postgresql.
 Created mainly to test play and slick frameworks.
 
-## Installation
+### Installation
 
-## Clone repo
+### Clone repo
 ```
 git clone https://github.com/awronski/seddit.git
 ```
 
-## Create database
+### Create database
 ```sql
 CREATE USER ali;
 ALTER ROLE ali PASSWORD 'password';
@@ -17,15 +17,14 @@ CREATE DATABASE alidb OWNER ali ENCODING = 'UTF-8';
 ```
 Schema will be created automatically during startup.
 
-## Configure
+### Configure
 - Rename `application.conf.template` to `application.conf`
-- fill in the missing values in the configuration
-- application uses Amazon Simple Starage, so fill the access tokens too.
+- Fill in the missing values in the configuration
+- Application uses Amazon Simple Starage, so fill the access tokens too.
 
-## Run
-Build app: `activator dist`
-Run:
-`./seddit-1.0.0-SNAPSHOT/bin/seddit -Dconfig.file=/your_path/application.conf -J-server`
+### Run
+- Build app: `activator dist`
+- Run: `./seddit-1.0.0-SNAPSHOT/bin/seddit -Dconfig.file=/your_path/application.conf -J-server`
 
 # Capabilities
 - Register (captcha), Login, Remember me, Logout
