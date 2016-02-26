@@ -40,7 +40,7 @@ class RssController @Inject()(val messagesApi: MessagesApi, cached: Cached)(post
         <channel>
           <title>{Conf.siteName}</title>
           <description>Recenzje najciekawyszych produktów z AliExpress.com</description>
-          <link>http://aliopinie.pl/rss</link>
+          <link>http://seddit/rss</link>
           <atom:link href={Conf.siteUrl + "/rss.xml"} rel="self" type="application/rss+xml"/>
           {for (rd <- rds) yield {
           val link: String = PostUrl(rd.post.id, rd.post.title)
