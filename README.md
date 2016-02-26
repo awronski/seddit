@@ -31,6 +31,7 @@ Schema will be created automatically during startup.
 - Create a post with text, link, pictures and tags
 - Vote for posts
 - Add comments to the posts
+- RSS and Sitemap generators
 
 # Screenshot
 ![alt screenshot](https://raw.githubusercontent.com/awronski/seddit/master/post.jpg)
