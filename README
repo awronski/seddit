@@ -1,7 +1,0 @@
-This is your new Play application
-=================================
-
-This file will be packaged with your application, when using `activator dist`.
-
-Run:
-./alireviews-0.4.0-SNAPSHOT/bin/alireviews -Dconfig.file=/opt/ali/application.conf -J-Xms128M -J-Xmx512m -J-server
